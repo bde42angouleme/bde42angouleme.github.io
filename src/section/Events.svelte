@@ -1,7 +1,16 @@
 <script lang="ts">
 	import PointerExpand from "../components/PointerExpand.svelte";
+	import ArrowButton from "../components/ArrowButton.svelte";
 
 	const events = [
+		{
+			title: "Galette au sarrasin",
+			tags: ["Nourriture", "Mardi de 12h00 à 13h30"]
+		},
+		{
+			title: "Galette au sarrasin",
+			tags: ["Nourriture", "Mardi de 12h00 à 13h30"]
+		},
 		{
 			title: "Galette au sarrasin",
 			tags: ["Nourriture", "Mardi de 12h00 à 13h30"]
@@ -33,6 +42,9 @@
 			</a>
 		</PointerExpand>
 	{/each}
+	<div class="footer">
+		<ArrowButton text="Proposer un event" link="#" />
+	</div>
 </section>
 
 <style>
@@ -96,5 +108,13 @@
 		padding: 5px 20px;
 		border-radius: 20px;
 		background-color: var(--color-purple);
+	}
+
+	.footer {
+		display: flex;
+		margin-top: 40px;
+		margin-bottom: 40px;
+		align-items: center;
+		justify-content: center;
 	}
 </style>
