@@ -5,5 +5,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lenis" level="application" />
+    <orderEntry type="library" name="bodymovin" level="application" />
   </component>
 </module>

@@ -8,6 +8,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#000000" />
 		<script src="https://unpkg.com/lenis@1.3.21/dist/lenis.min.js"></script>
+		<script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.13.0/lottie.min.js"></script>
+		<link rel="preload" href="/lottie/eyes.json" as="fetch" crossorigin="anonymous" />
 		<style>
 			@font-face {
 				font-family: 'Lugati v1';
@@ -27,12 +29,64 @@
 				color: var(--color-white);
 				font-family: "Montserrat", sans-serif;
 			}
+			#preloader {
+				position: fixed;
+				top: -25%;
+				left: -25%;
+				width: 150%;
+				height: 150%;
+				background-color: var(--color-black);
+				z-index: 9999;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: 1s cubic-bezier(.4,-0.5,0,1.05);
+			}
+			#lottie_container {
+				width: 200px;
+				height: 200px;
+			}
+			#app {
+				transition: 1s cubic-bezier(.4,-0.5,0,1.05);
+			}
+			.hidden {
+				transform: translateY(-150%);
+			}
+			.hidden_app {
+				transform: translateY(100%);
+			}
 		</style>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
+		<div id="preloader">
+			<div id="lottie_container"></div>
+		</div>
+		<div id="app" class="hidden_app">
+			<div style="display: contents">%sveltekit.body%</div>
+		</div>
 		<script>
+			const hidePreload = () => {
+				setTimeout(() => {
+					document.querySelector('#preloader').classList.add('hidden');
+					document.querySelector('#app').classList.remove('hidden_app');
+				}, 200);
+			}
+			if (document.readyState === "complete") {
+				hidePreload()
+			} else {
+				window.addEventListener("load", () => {
+					hidePreload()
+				});
+			}
+
+			lottie.loadAnimation({
+				container: document.getElementById('lottie_container'),
+				renderer: "svg",
+				loop: true,
+				autoplay: true,
+				path: '/lottie/eyes.json',
+			});
 			new Lenis({
 				autoRaf: true,
 			});
