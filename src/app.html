@@ -35,7 +35,6 @@
 				left: -25%;
 				width: 150%;
 				height: 150%;
-				background-color: var(--color-black);
 				z-index: 9999;
 				display: flex;
 				align-items: center;
@@ -48,12 +47,16 @@
 			}
 			#app {
 				transition: 1s cubic-bezier(.4,-0.5,0,1.05);
+				overflow: hidden;
+				transform-origin: 50% 50vh;
 			}
 			.hidden {
 				transform: translateY(-150%);
 			}
 			.hidden_app {
-				transform: translateY(100%);
+				transform: scale(1.2);
+				opacity: 0;
+				filter: blur(20px);
 			}
 		</style>
 		%sveltekit.head%
